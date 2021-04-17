@@ -257,6 +257,10 @@ io.on("connection", function (socket) {
                         MOD[playerInfo.room + "Join"](newPlayer, playerInfo.room);
                     }
 
+                    if (MOD["anyJoin"] != null) {
+                        //call it!
+                        MOD["anyJoin"](newPlayer, playerInfo.room);
+                    }
 
                     console.log("There are now " + Object.keys(gameState.players).length + " players on this server. Total visits " + visits);
                 }
@@ -279,14 +283,14 @@ io.on("connection", function (socket) {
 
 
             //check if there is a custom function in the MOD to call at this point
-            if (playerObject != null)
+            if (playerObject != null) {
                 if (playerObject.room != null) {
-                    if (MOD[playerObject.room + "Leave"] != null) {
-                        //call it!
+                    if (MOD[playerObject.room + "Leave"] != null) 
                         MOD[playerObject.room + "Leave"](playerObject, playerObject.room);
-                    }
+                    if (MOD["anyLeave"] != null) 
+                        MOD["anyLeave"](playerObject, playerObject.room);
                 }
-
+            }
             //send the disconnect
             //delete the player object
             delete gameState.players[socket.id];
@@ -309,6 +313,9 @@ io.on("connection", function (socket) {
 
                 if (MOD[obj.room + "Intro"] != null) {
                     MOD[obj.room + "Intro"](newComer, obj);
+                }
+                if (MOD["anyIntro"] != null) {
+                    MOD["anyIntro"](newComer, obj);
                 }
             }
             else {
@@ -433,15 +440,17 @@ io.on("connection", function (socket) {
                     //call it!
                     MOD[obj.from + "Leave"](playerObject, obj.from);
                 }
-
+                if (MOD["anyLeave"] != null) {
+                    MOD["anyLeave"](playerObject, obj.from);
+                }
 
 
                 io.to(obj.to).emit("playerJoined", playerObject);
 
                 //check if there is a custom function in the MOD to call at this point
-                if (MOD[obj.to + "Join"] != null) {
+                if (MOD["anyJoin"] != null) {
                     //call it!
-                    MOD[obj.to + "Join"](playerObject, obj.to);
+                    MOD["anyJoin"](playerObject, obj.to);
                 }
 
                 //check if there are NPCs in this room and make them send info to the player
@@ -532,6 +541,8 @@ io.on("connection", function (socket) {
 
     socket.on("tag", function (obj) {
         console.log("\"Somebody\" (" + obj.taggerId + ") called tag on " + obj.taggeeId )
+        if (MOD["anyTagged"] != null)
+                MOD["anyTagged"](obj.taggerId,obj.taggeeId,obj.roomId);
     });
 
 });

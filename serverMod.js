@@ -137,13 +137,22 @@ module.exports.initMod = function (io, gameState, DATA) {
 
 //custom function called on the server side when a player successfully enters or exits the room
 //executed before it's broadcast to the other players
-module.exports.experimentsJoin = function (player, roomId) {
-    //console.log("MOD: " + player.nickName + " entered room " + roomId);
+module.exports.anyJoin = function (player, roomId) {
+    console.log("MOD: " + player.nickName + " entered room " + roomId);
 }
 
-module.exports.experimentsLeave = function (player, roomId) {
-    //console.log("MOD: " + player.nickName + " exited room " + roomId);
+module.exports.anyLeave = function (player, roomId) {
+    console.log("MOD: " + player.nickName + " exited room " + roomId);
 }
+
+module.exports.anyTagged = function (taggerId, playerId, roomId) {
+    //TODO: Check if room that was tagged in is tag-enabled
+
+    console.log("MOD: " + taggerId + " tagged player " + playerId + "in room:" + roomId);
+}
+
+
+
 
 //wouldn't it be funny if cetain rooms modified your messages?
 module.exports.experimentsTalkFilter = function (player, message) {
@@ -154,9 +163,6 @@ module.exports.experimentsTalkFilter = function (player, message) {
     return message;
 }
 
-module.exports.experimentsTagged = function (taggerId, playerId, roomId) {
-    console.log("MOD: " + taggerId.nickName + " tagged player " + playerId + "in room:" + roomId);
-}
 
 
 

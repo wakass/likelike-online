@@ -2012,7 +2012,7 @@ function canvasReleased() {
                     dy = abs(me.y -t.y );
                     if ( dx <= THRESH_X && dy <= THRESH_Y){
                         console.log("Tag! You're it! " + me.id + " .. " + rolledSprite.id)
-                        socket.emit("tag", {taggerId: me.id, taggeeId: rolledSprite.id})
+                        socket.emit("tag", {taggerId: me.id, taggeeId: rolledSprite.id, roomId: me.room})
                     }
 
                 }
