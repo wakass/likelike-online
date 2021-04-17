@@ -279,11 +279,17 @@ function anyIntro(playerId, roomId) {
     //filter
     //me.room
     if (playerId == currentTaggerId)
-        turnToSheep(playerId)
+        {
+            roleId = "milkman";
+            changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
+        }
 }
 function anyEnter(playerId, sprite, drawingFunction) {
     if (playerId == currentTaggerId)
-        turnToSheep(playerId)
+        {
+            roleId = "milkman";
+            changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
+        }
 }
 
 
