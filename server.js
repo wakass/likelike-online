@@ -301,7 +301,7 @@ io.on("connection", function (socket) {
                     console.log(newTaggerI);
                     global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
                     console.log('New Tagger = ');
-                    console.log(global.gameState.players[inGamePlayers[newTaggerI].id]);
+                    console.log(global.gameState.players[inGamePlayers[newTaggerI].id].nickName);
                 }
                 else
                 {
