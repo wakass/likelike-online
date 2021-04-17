@@ -1218,6 +1218,8 @@ function update() {
                         var destination = createVector(p.destinationX, p.destinationY);
                         var position = createVector(p.x, p.y);
 
+                        console.log(p.destinationX, p.destinationY);
+
                         // Calculate the distance between your destination and position
                         var distance = destination.dist(position);
 
@@ -1970,7 +1972,6 @@ function canvasPressed() {
 function canvasReleased() {
 
     //print("CLICK " + mouseButton);
-
     if (screen == "error") {
     }
     else if (nickName != "" && screen == "game" && mouseButton == RIGHT) {
@@ -2035,7 +2036,8 @@ function canvasReleased() {
                 var c = areas.get(mx, my);
 
                 //if transparent or semitransparent do nothing
-                if (alpha(c) != 255) {
+                if ((alpha(c) != 255) && (me.room != "neon")) {
+
                     //cancel command
                     nextCommand = null;
                     //stop if moving
@@ -2045,8 +2047,66 @@ function canvasReleased() {
                 else if (c[0] == 255 && c[1] == 255 && c[2] == 255) {
                     //if white, generic walk stop command
                     nextCommand = null;
+                    desti_x = mouseX;
+                    desti_y = mouseY;
 
-                    socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: mouseX, destinationY: mouseY });
+                    if (me.room == "neon")
+                    {
+                        desti_x = me.x - (desti_x - me.x);
+                        desti_y = me.y - (desti_y - me.y);
+
+                        if (desti_x < 0)
+                        {
+                            desti_x = 10;
+                        }
+                        if (desti_x > 255)
+                        {
+                            desti_x = 240;
+                        }
+                        if (desti_y < 0)
+                        {
+                            desti_y = 20;
+                        }
+                        if (desti_y > 200)
+                        {
+                            desti_y = 190;
+                        }
+                        console.log(me.x, me.y)
+                    }
+                    
+                    socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: desti_x, destinationY: desti_y });
+                }
+                else if ((alpha(c) != 255) && (me.room == "neon")) {
+                    //if white, generic walk stop command
+                    nextCommand = null;
+                    desti_x = mouseX;
+                    desti_y = mouseY;
+
+                    if (me.room == "neon")
+                    {
+                        desti_x = me.x - (desti_x - me.x);
+                        desti_y = me.y - (desti_y - me.y);
+
+                        if (desti_x < 0)
+                        {
+                            desti_x = 10;
+                        }
+                        if (desti_x > 255)
+                        {
+                            desti_x = 240;
+                        }
+                        if (desti_y < 0)
+                        {
+                            desti_y = 20;
+                        }
+                        if (desti_y > 200)
+                        {
+                            desti_y = 190;
+                        }
+                        console.log(me.x, me.y)
+                    }
+                    
+                    socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: desti_x, destinationY: desti_y });
                 }
                 else {
                     //if something else check the commands
@@ -2066,7 +2126,6 @@ function canvasReleased() {
 
 //queue a command, move to the point
 function moveToCommand(command) {
-
     nextCommand = command;
 
     //I need to change my destination locally before the message bouces back
@@ -2080,6 +2139,7 @@ function moveToCommand(command) {
     {
         me.destinationX = mouseX;
         me.destinationY = mouseY;
+
         socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: mouseX, destinationY: mouseY });
     }
 

@@ -225,6 +225,8 @@ io.on("connection", function (socket) {
                     gameState.players[socket.id].IP = IP;
                     gameState.players[socket.id].floodCount = 0;
                     gameState.players[socket.id].room = playerInfo.room;
+                    gameState.players[socket.id].isTagger = false;
+
 
                     //send the user to the default room
                     socket.join(playerInfo.room, function () {
@@ -291,6 +293,43 @@ io.on("connection", function (socket) {
                         MOD["anyLeave"](playerObject, playerObject.room);
                 }
             }
+            // Tagger left
+            if (playerObject.isTagger)
+            {
+                console.log("tagger left");
+                gameState.players[socket.id].inGame = false;
+
+                // Set new tagger
+                inGamePlayers = []
+                for (var id in global.gameState.players)
+                {
+                    var p = gameState.players[id];
+                    if(p.inGame)
+                    {
+                        inGamePlayers.push(p)
+                    }
+                }
+                inGamePlayerCount = inGamePlayers.length;
+
+                if (inGamePlayerCount > 0)
+                {
+                    newTaggerI = getRandomInt(inGamePlayerCount);
+                    console.log(newTaggerI);
+                    global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
+                    console.log('New Tagger = ');
+                    console.log(global.gameState.players[inGamePlayers[newTaggerI].id].nickName);
+                }
+                else
+                {
+                    console.log('No tagger assigned, no one in game');
+                }
+                
+            }
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+
             //send the disconnect
             //delete the player object
             delete gameState.players[socket.id];

@@ -2,7 +2,7 @@
 //they are either related to the rooms or shared with the server 
 module.exports.SETTINGS = {
     //if not specified by the url where is the starting point
-    defaultRoom: "likelikeOutside",
+    defaultRoom: "lobby",
     //minimum time between talk messages enforced by both client and server
     ANTI_SPAM: 1000,
     //shows up at first non lurking login
@@ -73,7 +73,7 @@ module.exports.ROOMS = {
             //enterPoint: where to spawn in the next room
             //obstacle: is the area walkable
             hffec27: { cmd: "enter", room: "likelikeBackyard", label: "Backyard", point: [6, 88], enterPoint: [116, 69], obstacle: false },
-            h00e436: { cmd: "enter", room: "likelikeOutside", label: "Street", point: [102, 98], enterPoint: [103, 84], obstacle: false },
+            h00e436: { cmd: "enter", room: "lobby", label: "Street", point: [102, 98], enterPoint: [103, 84], obstacle: false },
             hab5236: { cmd: "enter", room: "firstFloor", label: "oMoMA", point: [116, 85], enterPoint: [63, 98], obstacle: false },
 
             //text displays a text only on the client
@@ -126,7 +126,7 @@ module.exports.ROOMS = {
             //enterPoint: where to spawn in the next room
             //obstacle: is the area walkable
             hffec27: { cmd: "enter", room: "likelikeBackyard", label: "Backyard", point: [6, 88], enterPoint: [116, 69], obstacle: false },
-            h00e436: { cmd: "enter", room: "likelikeOutside", label: "Street", point: [102, 98], enterPoint: [103, 84], obstacle: false },
+            h00e436: { cmd: "enter", room: "lobby", label: "Street", point: [102, 98], enterPoint: [103, 84], obstacle: false },
             //text displays a text only on the client
             //txt: the text
             //align: center or left
@@ -148,7 +148,7 @@ module.exports.ROOMS = {
         }
     },
 
-    likelikeOutside: {
+    lobby: {
         bg: "likelike-outside-omoma.png",
         frames: 2,
         frameDelay: 30,
