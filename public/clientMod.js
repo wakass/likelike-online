@@ -22,6 +22,7 @@ var rolesInfo = {
     boyfriend: ["Jamal", "You are Jamal, Phoebe's new boyfriend."],
     fly: ["Fly", "You are just a fly on the wall."],
 }
+var currentTaggerId = null;
 
 function initMod(playerId, roomId) {
     print("Mod: " + players[playerId].nickName + " (you) joined the game at " + roomId);
@@ -62,6 +63,13 @@ function initMod(playerId, roomId) {
         });
 
 
+        socket.on('updateTagger', function(taggerId){
+            console.log("updated current tagger to: " + taggerId)
+            currentTaggerId = taggerId;
+            roleId = "milkman";
+            changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
+            }
+        );
 
         socket.on('updateRoles', function (newcomerId, fr) {
 
@@ -266,6 +274,19 @@ function VIPRoomExit(playerId) {
 }
 
 
+//Coopt Sheep mode ..for TAG!! obvio..
+function anyIntro(playerId, roomId) {
+    //filter
+    //me.room
+    if (playerId == currentTaggerId)
+        turnToSheep(playerId)
+}
+function anyEnter(playerId, sprite, drawingFunction) {
+    if (playerId == currentTaggerId)
+        turnToSheep(playerId)
+}
+
+
 
 //when ANYBODY Enters
 function thirdFloorEnter(playerId, sprite, drawingFunction) {
@@ -274,7 +295,6 @@ function thirdFloorEnter(playerId, sprite, drawingFunction) {
         turnToSheep(playerId);
     }
 }
-
 
 //called when I receive data from a player already in the room
 function thirdFloorIntro(playerId, roomId) {

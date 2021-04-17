@@ -149,6 +149,9 @@ module.exports.anyTagged = function (taggerId, playerId, roomId) {
     //TODO: Check if room that was tagged in is tag-enabled
 
     console.log("MOD: " + taggerId + " tagged player " + playerId + "in room:" + roomId);
+    for (var id in io.sockets.sockets)
+        io.sockets.sockets[id].emit('updateTagger', playerId);
+
 }
 
 

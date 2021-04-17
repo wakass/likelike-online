@@ -838,6 +838,9 @@ function newGame() {
                 if (window[p.room + "Enter"] != null) {
                     window[p.room + "Enter"](p.id, p.room);
                 }
+                if (window["anyEnter"] != null) {
+                    window["anyEnter"](p.id, p.room);
+                }
 
             }
             catch (e) {
@@ -856,10 +859,14 @@ function newGame() {
 
                 players[p.id] = new Player(p);
 
-                if (p.room != null)
+                if (p.room != null) {
                     if (window[p.room + "Intro"] != null) {
                         window[p.room + "Intro"](p.id, p.room);
                     }
+                    if (window["anyIntro"] != null) {
+                        window["anyIntro"](p.id, p.room);
+                    }    
+                }
                 console.log("There are now " + Object.keys(players).length + " players in this room");
             } catch (e) {
                 console.log("Error on onIntro");
