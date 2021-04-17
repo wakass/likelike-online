@@ -530,6 +530,10 @@ io.on("connection", function (socket) {
         }
     });
 
+    socket.on("tag", function (obj) {
+        console.log("\"Somebody\" (" + obj.taggerId + ") called tag on " + obj.taggeeId )
+    });
+
 });
 
 

@@ -2003,16 +2003,16 @@ function canvasReleased() {
                         socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: t.x + d, destinationY: t.y });
                     }
                 }
-                THRESH_X =10;
-                THRESH_Y =10;
+                THRESH_X =20;
+                THRESH_Y =20;
                 //Check if the player is close enough, if so, it's possible to emit a tag count
                 //TODO: Check if this is resolution dependent?
-                if (rolledSprite.id != null) {
+                if (rolledSprite.id != null && rolledSprite.id != me.id) {
                     dx = abs(me.x -t.x );
                     dy = abs(me.y -t.y );
                     if ( dx <= THRESH_X && dy <= THRESH_Y){
-                        console.log("Tag! You're it." + me.id + ".." + rolledSprite.id)
-                        socket.emit("tag", {taggerId: me.id, taggeeId:rolledSprite.id})
+                        console.log("Tag! You're it! " + me.id + " .. " + rolledSprite.id)
+                        socket.emit("tag", {taggerId: me.id, taggeeId: rolledSprite.id})
                     }
 
                 }

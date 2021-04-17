@@ -155,8 +155,7 @@ module.exports.experimentsTalkFilter = function (player, message) {
 }
 
 module.exports.experimentsTagged = function (taggerId, playerId, roomId) {
-    console.log("MOD: " + taggerId.nickName + " tagged player " + playerId + "in room:" roomId);
-    
+    console.log("MOD: " + taggerId.nickName + " tagged player " + playerId + "in room:" + roomId);
 }
 
 
