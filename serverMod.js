@@ -154,6 +154,12 @@ module.exports.experimentsTalkFilter = function (player, message) {
     return message;
 }
 
+module.exports.experimentsTagged = function (taggerId, playerId, roomId) {
+    console.log("MOD: " + taggerId.nickName + " tagged player " + playerId + "in room:" roomId);
+    
+}
+
+
 
 //wouldn't it be funny if cetain rooms modified your messages?
 module.exports.VIPRoomTalkFilter = function (player, message) {
