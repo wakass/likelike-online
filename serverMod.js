@@ -368,10 +368,38 @@ module.exports.rhymeRoomJoin = function (playerObject, roomId) {
 
 //if enters when music is playing sent 
 module.exports.rhymeRoomLeave = function (playerObject, roomId) {
-
+    console.log('hi');
     if (io.sockets.sockets[playerObject.id] != null) {
         io.sockets.sockets[playerObject.id].emit('musicExit');
 
+    }
+}
+
+//if enters when music is playing sent 
+module.exports.lobbyJoin = function (playerObject, roomId) {
+    global.gameState.players[playerObject.id].inGame = false;
+}
+
+//if leaves lobby set player as tagger if no tagger is in game
+module.exports.lobbyLeave = function (playerObject, roomId) {
+
+    global.gameState.players[playerObject.id].inGame = true;
+    console.log('roomid =');
+    console.log(roomId);
+    players = global.gameState.players;
+    entries = players.keys;
+
+    var taggerPresent = false;
+    for (var id in global.gameState.players)
+    {
+        if (global.gameState.players[id].isTagger){
+            taggerPresent = true;
+        }
+    }
+    if (!taggerPresent){
+        global.gameState.players[playerObject.id].isTagger = true;
+        console.log(global.gameState.players[playerObject.id].isTagger);
+        console.log(global.gameState.players[playerObject.id].nickName);
     }
 }
 
@@ -470,7 +498,7 @@ module.exports.VIPRoomJoin = function (playerObject, roomId) {
         //force leave
         if (io.sockets.sockets[expelled] != null) {
 
-            this.transferPlayer(expelled, "VIPRoom", "likelikeOutside", 121 * 2, 89 * 2);
+            this.transferPlayer(expelled, "VIPRoom", "lobby", 121 * 2, 89 * 2);
             io.to(expelled).emit('godMessage', "Sorry, we had to expel you to make room for " + playerObject.nickName);
         }
 

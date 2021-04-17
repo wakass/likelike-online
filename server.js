@@ -225,6 +225,8 @@ io.on("connection", function (socket) {
                     gameState.players[socket.id].IP = IP;
                     gameState.players[socket.id].floodCount = 0;
                     gameState.players[socket.id].room = playerInfo.room;
+                    gameState.players[socket.id].isTagger = false;
+
 
                     //send the user to the default room
                     socket.join(playerInfo.room, function () {
@@ -277,6 +279,50 @@ io.on("connection", function (socket) {
 
             io.sockets.emit("playerLeft", { id: socket.id, disconnect: true });
 
+            //assign a new tagger
+            if (playerObject.isTagger)
+            {
+                var playercount = 0;
+                for (var id in global.gameState.players)
+                {
+                    playercount++;
+                }
+                taggerPlace = getRandomInt(max)
+                var i = 0;
+                var taggerSet = false;
+                for (var id in global.gameState.players)
+                {
+                    
+                    if (i == taggerPlace)
+                    {
+                        if (global.gameState.players[id].inGame == true)
+                        {
+                            global.gameState.players[id].isTagger = true;
+                            taggerSet = true;
+                            break;
+                        }
+
+                    }
+                    i++;  
+                }
+                if (!taggerSet)
+                {
+                    for (var id in global.gameState.players)
+                    {
+                        var player = global.gameState.players[id];
+                        if (player.inGame == true)
+                        {
+                            global.gameState.players[id].isTagger = true;
+                        }
+                    }
+                }
+            }
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+              }
+
+            }
 
             //check if there is a custom function in the MOD to call at this point
             if (playerObject != null)
