@@ -2071,7 +2071,6 @@ function canvasReleased() {
                         {
                             desti_y = 190;
                         }
-                        console.log(me.x, me.y)
                     }
                     
                     socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: desti_x, destinationY: desti_y });
@@ -2103,7 +2102,6 @@ function canvasReleased() {
                         {
                             desti_y = 190;
                         }
-                        console.log(me.x, me.y)
                     }
                     
                     socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: desti_x, destinationY: desti_y });
