@@ -1218,8 +1218,6 @@ function update() {
                         var destination = createVector(p.destinationX, p.destinationY);
                         var position = createVector(p.x, p.y);
 
-                        console.log(p.destinationX, p.destinationY);
-
                         // Calculate the distance between your destination and position
                         var distance = destination.dist(position);
 
