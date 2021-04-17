@@ -277,61 +277,44 @@ io.on("connection", function (socket) {
 
             var playerObject = gameState.players[socket.id];
 
-            io.sockets.emit("playerLeft", { id: socket.id, disconnect: true });
-
-            //assign a new tagger
+            // Tagger left
             if (playerObject.isTagger)
             {
-                var playercount = 0;
-                for (var id in global.gameState.players)
-                {
-                    playercount++;
-                }
-                taggerPlace = getRandomInt(max)
-                var i = 0;
-                var taggerSet = false;
-                for (var id in global.gameState.players)
-                {
-                    
-                    if (i == taggerPlace)
-                    {
-                        if (global.gameState.players[id].inGame == true)
-                        {
-                            global.gameState.players[id].isTagger = true;
-                            taggerSet = true;
-                            break;
-                        }
+                console.log("tagger left");
+                gameState.players[socket.id].inGame = false;
 
-                    }
-                    i++;  
-                }
-                if (!taggerSet)
+                // Set new tagger
+                inGamePlayers = []
+                for (var id in global.gameState.players)
                 {
-                    for (var id in global.gameState.players)
+                    var p = gameState.players[id];
+                    if(p.inGame)
                     {
-                        var player = global.gameState.players[id];
-                        if (player.inGame == true)
-                        {
-                            global.gameState.players[id].isTagger = true;
-                        }
+                        inGamePlayers.push(p)
                     }
                 }
+                inGamePlayerCount = inGamePlayers.length;
+
+                if (inGamePlayerCount > 0)
+                {
+                    newTaggerI = getRandomInt(inGamePlayerCount);
+                    console.log(newTaggerI);
+                    global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
+                    console.log('New Tagger = ');
+                    console.log(global.gameState.players[inGamePlayers[newTaggerI].id]);
+                }
+                else
+                {
+                    console.log('No tagger assigned, no one in game');
+                }
+                
             }
+
+            io.sockets.emit("playerLeft", { id: socket.id, disconnect: true });
 
             function getRandomInt(max) {
                 return Math.floor(Math.random() * max);
-              }
-
             }
-
-            //check if there is a custom function in the MOD to call at this point
-            if (playerObject != null)
-                if (playerObject.room != null) {
-                    if (MOD[playerObject.room + "Leave"] != null) {
-                        //call it!
-                        MOD[playerObject.room + "Leave"](playerObject, playerObject.room);
-                    }
-                }
 
             //send the disconnect
             //delete the player object

@@ -398,9 +398,9 @@ module.exports.lobbyLeave = function (playerObject, roomId) {
     }
     if (!taggerPresent){
         global.gameState.players[playerObject.id].isTagger = true;
-        console.log(global.gameState.players[playerObject.id].isTagger);
-        console.log(global.gameState.players[playerObject.id].nickName);
     }
+    console.log(global.gameState.players[playerObject.id].isTagger);
+    console.log(global.gameState.players[playerObject.id].nickName);
 }
 
 module.exports.darkRoomTalkFilter = function (player, message) {
