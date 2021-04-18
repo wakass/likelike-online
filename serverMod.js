@@ -394,6 +394,38 @@ module.exports.rhymeRoomLeave = function (playerObject, roomId) {
 //if enters when music is playing sent 
 module.exports.lobbyJoin = function (playerObject, roomId) {
     global.gameState.players[playerObject.id].inGame = false;
+    // Tagger left
+    if (playerObject.isTagger)
+    {
+        console.log("tagger left");
+        gameState.players[socket.id].inGame = false;
+
+        // Set new tagger
+        inGamePlayers = []
+        for (var id in global.gameState.players)
+        {
+            var p = gameState.players[id];
+            if(p.inGame)
+            {
+                inGamePlayers.push(p)
+            }
+        }
+        inGamePlayerCount = inGamePlayers.length;
+
+        if (inGamePlayerCount > 0)
+        {
+            newTaggerI = getRandomInt(inGamePlayerCount);
+            console.log(newTaggerI);
+            global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
+            console.log('New Tagger = ');
+            console.log(global.gameState.players[inGamePlayers[newTaggerI].id].nickName);
+        }
+        else
+        {
+            console.log('No tagger assigned, no one in game');
+        }
+        
+    }
 }
 
 //if leaves lobby set player as tagger if no tagger is in game
