@@ -180,6 +180,7 @@ module.exports.ROOMS = {
             h79077c: { cmd: "enter", room: "barbarella", label: "Barbarella", point: [74, 84], enterPoint: [104, 98], obstacle: false },
             ha924ad: { cmd: "enter", room: "neon", label: "Neon", point: [96, 84], enterPoint: [104, 98], obstacle: false },
             h8b348d: { cmd: "enter", room: "makeUpRoom", label: "Make up room", point: [111, 84], enterPoint: [104, 98], obstacle: false },
+            h009688: { cmd: "enter", room: "lunarStage", label: "", point: [22, 75], enterPoint: [104, 98], obstacle: false },
         }
     },
 
@@ -198,6 +199,22 @@ module.exports.ROOMS = {
             h7f087e: { cmd: "enter", room: "theStateOfMaine", label: "State of Maine", point: [62, 73], enterPoint: [104, 98], obstacle: false },
             hff00ff: { cmd: "enter", room: "barbarella", label: "Barbarella", point: [13, 73], enterPoint: [104, 98], obstacle: false },
             h9c009b: { cmd: "enter", room: "neon", label: "Neon", point: [117, 59], enterPoint: [104, 98], obstacle: false },
+        }
+    },
+
+    lunarStage: {
+        bg: "LUNA.png",
+        frames: 2,
+        frameDelay: 30,
+        avatarScale: 1,
+        pageBg: "#ab5236",
+        area: "LUNA2.png",
+        tint: "#fdeac8",
+        bubblesY: 44,
+        spawn: [38, 80, 100, 100],
+        areaColors: {
+            //h will be replaced by #
+            hff008b: { cmd: "enter", room: "neon", label: "Neon", point: [64, 50], enterPoint: [104, 98], obstacle: false },
         }
     },
 
