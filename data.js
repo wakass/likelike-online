@@ -103,7 +103,7 @@ module.exports.ROOMS = {
         frameDelay: 30,
         avatarScale: 1,
         pageBg: "#ab5236",
-        area: "luneArea.png",
+        area: "lunaArea.png",
         tint: "#fdeac8",
         bubblesY: 44,
         spawn: [38, 80, 100, 100],
