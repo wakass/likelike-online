@@ -258,6 +258,17 @@ function rhymeRoomEnter(playerId, roomId) {
     }
 }
 
+
+function lobbyEnter(playerId, roomId) {
+    if (playerId == me.id) {
+        longText = "Welcome to Sick$ick! Watch out for the milkman. He will try to catch you and convert you to the milk cult.";
+        longTextLines = -1;
+        longTextAlign = "center";
+        bg.rewind();
+        bg.stop();
+    }
+}
+
 function VIPRoomEnter(playerId, roomId) {
     if (playerId == me.id) {
         longText = "Only 3 visitors are allowed in the VIP room. First in, first out.";
