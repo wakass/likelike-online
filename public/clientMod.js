@@ -235,52 +235,6 @@ function mirrorRoomTalk(playerId, bubble) {
 
 }
 
-function censorshipRoomEnter(playerId, roomId) {
-    if (playerId == me.id) {
-        longText = "In the Censorship Room each word can only be uttered once and never again.";
-        longTextLines = -1;
-        longTextAlign = "center";
-    }
-}
-
-function darkRoomEnter(playerId, roomId) {
-    if (playerId == me.id) {
-        longText = "The Dark Room is only for cybersex. You must be 18 years or older to enter.";
-        longTextLines = -1;
-        longTextAlign = "center";
-    }
-}
-
-
-function rhymeRoomEnter(playerId, roomId) {
-    if (playerId == me.id) {
-        longText = "In the Rhyme Room you can only rhyme with the sentences in the air.\nNo repeats, no made-up words. The best poet wins.";
-        longTextLines = -1;
-        longTextAlign = "center";
-        bg.rewind();
-        bg.stop();
-    }
-}
-
-
-function lobbyEnter(playerId, roomId) {
-    if (playerId == me.id) {
-        longText = "Welcome to Sick$ick! Watch out for the milkman. He will try to catch you and convert you to the milk cult.";
-        longTextLines = -1;
-        longTextAlign = "center";
-        bg.rewind();
-        bg.stop();
-    }
-}
-
-function VIPRoomEnter(playerId, roomId) {
-    if (playerId == me.id) {
-        longText = "Only 3 visitors are allowed in the VIP room. First in, first out.";
-        longTextLines = -1;
-        longTextAlign = "center";
-    }
-}
-
 function VIPRoomExit(playerId) {
     //stop music before you leave, if any
     //if (ROOMS.VIProom.musicLoop != null) {
