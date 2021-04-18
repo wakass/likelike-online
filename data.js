@@ -77,6 +77,7 @@ module.exports.ROOMS = {
             ha924ad: { cmd: "enter", room: "neon", label: "Neon", point: [96, 84], enterPoint: [104, 98], obstacle: false },
             h8b348d: { cmd: "enter", room: "makeupRoom", label: "Make up room", point: [111, 84], enterPoint: [104, 98], obstacle: false },
             h009688: { cmd: "enter", room: "lunarStage", label: "", point: [22, 75], enterPoint: [104, 98], obstacle: false },
+            hff0000: { cmd: "enter", room: "lobby", label: "This is kind of a vortex", point: [14, 77], enterPoint: [104, 98], obstacle: false },
         }
     },
 
@@ -123,6 +124,7 @@ module.exports.ROOMS = {
         avatarScale: 1,
         pageBg: "#ab5236",
         area: "makeuproomArea.png",
+        music: "makeuproom.ogg",
         tint: "#fdeac8",
         bubblesY: 44,
         spawn: [5, 15, 21, 28],
