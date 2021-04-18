@@ -394,6 +394,30 @@ module.exports.rhymeRoomLeave = function (playerObject, roomId) {
     }
 }
 
+module.exports.gardenJoin = function (playerObject, roomId) {
+    global.gameState.players[playerObject.id].inGame = true;
+}
+
+module.exports.theStateOfMaineJoin = function (playerObject, roomId) {
+    global.gameState.players[playerObject.id].inGame = true;
+}
+
+module.exports.barbarellaJoin = function (playerObject, roomId) {
+    global.gameState.players[playerObject.id].inGame = true;
+}
+
+module.exports.neonJoin = function (playerObject, roomId) {
+    global.gameState.players[playerObject.id].inGame = true;
+}
+
+module.exports.lunarStageJoin = function (playerObject, roomId) {
+    global.gameState.players[playerObject.id].inGame = true;
+}
+
+module.exports.makeUpRoomJoin = function (playerObject, roomId) {
+    global.gameState.players[playerObject.id].inGame = true;
+}
+
 //if enters when music is playing sent 
 module.exports.lobbyJoin = function (playerObject, roomId) {
     global.gameState.players[playerObject.id].inGame = false;
