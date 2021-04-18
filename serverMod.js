@@ -425,7 +425,7 @@ module.exports.lobbyJoin = function (playerObject, roomId) {
     if (playerObject.isTagger)
     {
         console.log("Tagger left");
-        gameState.players[socket.id].inGame = false;
+        gameState.players[playerObject.id].inGame = false;
 
         // Set new tagger
         inGamePlayers = []
