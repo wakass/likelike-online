@@ -71,7 +71,7 @@ module.exports.ROOMS = {
         music: "theStateOfMaine.ogg",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [38, 80, 100, 100],
+        spawn: [38, 86, 128, 100],
         areaColors: {
             //h will be replaced by #
             hf800ff: { cmd: "enter", room: "garden", label: "Garden", point: [46, 84], enterPoint: [104, 98], obstacle: false },
