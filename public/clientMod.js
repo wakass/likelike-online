@@ -64,11 +64,15 @@ function initMod(playerId, roomId) {
 
 
         socket.on('updateTagger', function(taggerId){
-            console.log("updated current tagger to: " + taggerId)
-            currentTaggerId = taggerId;
-            roleId = "milkman";
-            changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
+                console.log("updated current tagger to: " + taggerId)
+                previousTaggerId = currentTaggerId;
+                currentTaggerId = taggerId;
+                roleId = "milkman";
+                changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
+
+                changeCharacterToOriginal(previousTaggerId);
             }
+
         );
 
         socket.on('updateRoles', function (newcomerId, fr) {
@@ -373,6 +377,32 @@ function familyRoomIntro(playerId, roomId) {
         changeCharacter(playerId, "fly", "flyWalk", "flyEmote");
 }
 
+//When changing to milkman, e.g., afterwards we reconstitute the original spritesheet
+function changeCharacterToOriginal(playerId) {
+    var p = players[playerId];
+    var fakeNew = new window.Player(p);
+    
+    removeSprite(p.sprite);
+
+    players[playerId] = fakeNew;
+    delete(p);
+    
+    // p.spriteSheet = loadSpriteSheet(p.avatarGraphics, AVATAR_W, AVATAR_H, round(window.walkSheets[p.avatar].width / AVATAR_W));
+    // p.walkAnimation = loadAnimation(p.spriteSheet);
+    // //emote
+    // p.emoteGraphics = paletteSwap(window.emoteSheets[p.avatar], p.colors, p.tint);
+    // p.emoteSheet = loadSpriteSheet(p.emoteGraphics, AVATAR_W, AVATAR_H, round(window.emoteSheets[p.avatar].width / AVATAR_W));
+    // p.emoteAnimation = loadAnimation(p.emoteSheet);
+    // p.emoteAnimation.frameDelay = 10;
+
+    // p.sprite = createSprite(100, 100);
+
+    // p.sprite.scale = window.ROOMS[p.room].avatarScale;
+
+    // p.sprite.addAnimation("walk", p.walkAnimation);
+    // p.sprite.addAnimation("emote", p.emoteAnimation);
+
+}
 
 //changes the appearance of the character, only for this room
 function changeCharacter(playerId, roleId, walkSS, emoteSS) {

@@ -147,13 +147,16 @@ module.exports.anyLeave = function (player, roomId) {
 
 module.exports.anyTagged = function (taggerId, playerId, roomId) {
     //TODO: Check if room that was tagged in is tag-enabled
+    console.log("anyTagged: " + taggerId + playerId + roomId);
+    console.log("Tagger?: " + gameState.players[taggerId].isTagger);
+    console.log("Ingame?: " + gameState.players[taggerId].inGame);
     if (gameState.players[taggerId].isTagger && gameState.players[taggerId].inGame) 
     {
-        gameState.players[taggerId].isTagger = false;
-        gameState.players[playerId].isTagger = true;
+        // gameState.players[taggerId].isTagger = false;
+        // gameState.players[playerId].isTagger = true;
+        setNewTagger(playerId);
         console.log("MOD: " + taggerId + " tagged player " + playerId + "in room:" + roomId);
-        for (var id in io.sockets.sockets)
-            io.sockets.sockets[id].emit('updateTagger', playerId);
+        
     }
 }
 
@@ -398,7 +401,7 @@ module.exports.lobbyJoin = function (playerObject, roomId) {
     // Tagger left
     if (playerObject.isTagger)
     {
-        console.log("tagger left");
+        console.log("Tagger left");
         gameState.players[socket.id].inGame = false;
 
         // Set new tagger
@@ -416,10 +419,8 @@ module.exports.lobbyJoin = function (playerObject, roomId) {
         if (inGamePlayerCount > 0)
         {
             newTaggerI = getRandomInt(inGamePlayerCount);
-            console.log(newTaggerI);
             global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
-            console.log('New Tagger = ');
-            console.log(global.gameState.players[inGamePlayers[newTaggerI].id].nickName);
+            console.log("New Tagger = " + global.gameState.players[inGamePlayers[newTaggerI].id].nickName + " PlayerId:" + newTaggerI);
         }
         else
         {
@@ -428,15 +429,26 @@ module.exports.lobbyJoin = function (playerObject, roomId) {
         
     }
 }
-
+function setNewTagger(playerId) {
+    for (var i in global.gameState.players) {
+        p = global.gameState.players[i];
+        if (p.id == playerId){
+            p.isTagger = true;
+            console.log("servermodjs: Set new tagger to be: " + p.nickName + " (playerId: " + p.id + ")")
+            for (var id in io.sockets.sockets)
+                io.sockets.sockets[id].emit('updateTagger', playerId);
+        }
+        else
+            p.isTagger = false;
+    }    
+}
 //if leaves lobby set player as tagger if no tagger is in game
 module.exports.lobbyLeave = function (playerObject, roomId) {
-
+    var players = global.gameState.players;
+    var p =  playerObject;
     global.gameState.players[playerObject.id].inGame = true;
-    console.log('roomid =');
-    console.log(roomId);
+    
     players = global.gameState.players;
-    entries = players.keys;
 
     var taggerPresent = false;
     for (var id in global.gameState.players)
@@ -446,10 +458,13 @@ module.exports.lobbyLeave = function (playerObject, roomId) {
         }
     }
     if (!taggerPresent){
-        global.gameState.players[playerObject.id].isTagger = true;
+        setNewTagger(playerObject.id)
+        // global.gameState.players[playerObject.id].isTagger = true;
     }
-    console.log(global.gameState.players[playerObject.id].isTagger);
-    console.log(global.gameState.players[playerObject.id].nickName);
+
+    console.log("playerId: " + playerObject.id + " left roomId: " + roomId);
+    console.log(players[p.id].nickName + "(playerId:" + p.id + ")" + (players[p.id].isTagger ? " is now" : " is not") + " a tagger");
+    
 }
 
 module.exports.darkRoomTalkFilter = function (player, message) {

@@ -81,8 +81,18 @@ var banned = [];
 app.use(express.static("public"));
 
 
-
-
+function setNewTagger(playerId) {
+    for (var p in gameState.players) {
+        if (p.id == playerId){
+            p.isTagger = true;
+            console.log("serverjs: Set new tagger to be: " + p.Nickname + " (playerId: " + p.id + ")")
+            for (var id in io.sockets.sockets)
+                io.sockets.sockets[id].emit('updateTagger', playerId);
+        }
+        else
+            p.isTagger = false;
+    }    
+}
 
 //when a client connects the socket is established and I set up all the functions listening for events
 io.on("connection", function (socket) {
@@ -296,7 +306,7 @@ io.on("connection", function (socket) {
             // Tagger left
             if (playerObject.isTagger)
             {
-                console.log("tagger left");
+                console.log("Current tagger left:" + playerObject.id);
                 gameState.players[socket.id].inGame = false;
 
                 // Set new tagger
@@ -314,10 +324,7 @@ io.on("connection", function (socket) {
                 if (inGamePlayerCount > 0)
                 {
                     newTaggerI = getRandomInt(inGamePlayerCount);
-                    console.log(newTaggerI);
-                    global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
-                    console.log('New Tagger = ');
-                    console.log(global.gameState.players[inGamePlayers[newTaggerI].id].nickName);
+                    setNewTagger(newTaggerI);
                 }
                 else
                 {
