@@ -67,7 +67,7 @@ function initMod(playerId, roomId) {
                 console.log("updated current tagger to: " + taggerId)
                 previousTaggerId = currentTaggerId;
                 currentTaggerId = taggerId;
-                roleId = "milkman";
+                roleId = "ghost";
                 changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
 
                 changeCharacterToOriginal(previousTaggerId);
