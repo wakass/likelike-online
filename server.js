@@ -302,35 +302,36 @@ io.on("connection", function (socket) {
                     if (MOD["anyLeave"] != null) 
                         MOD["anyLeave"](playerObject, playerObject.room);
                 }
-            }
-            // Tagger left
-            if (playerObject.isTagger)
-            {
-                console.log("Current tagger left:" + playerObject.id);
-                gameState.players[socket.id].inGame = false;
-
-                // Set new tagger
-                inGamePlayers = []
-                for (var id in global.gameState.players)
+            
+                // Tagger left
+                if (playerObject.isTagger)
                 {
-                    var p = gameState.players[id];
-                    if(p.inGame)
+                    console.log("Current tagger left:" + playerObject.id);
+                    gameState.players[socket.id].inGame = false;
+
+                    // Set new tagger
+                    inGamePlayers = []
+                    for (var id in global.gameState.players)
                     {
-                        inGamePlayers.push(p)
+                        var p = gameState.players[id];
+                        if(p.inGame)
+                        {
+                            inGamePlayers.push(p)
+                        }
                     }
-                }
-                inGamePlayerCount = inGamePlayers.length;
+                    inGamePlayerCount = inGamePlayers.length;
 
-                if (inGamePlayerCount > 0)
-                {
-                    newTaggerI = getRandomInt(inGamePlayerCount);
-                    setNewTagger(newTaggerI);
+                    if (inGamePlayerCount > 0)
+                    {
+                        newTaggerI = getRandomInt(inGamePlayerCount);
+                        setNewTagger(newTaggerI);
+                    }
+                    else
+                    {
+                        console.log('No tagger assigned, there\s no one left in game! *sadface*');
+                    }
+                        
                 }
-                else
-                {
-                    console.log('No tagger assigned, no one in game');
-                }
-                
             }
 
             function getRandomInt(max) {

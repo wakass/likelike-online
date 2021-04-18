@@ -158,8 +158,8 @@ module.exports.ROOMS = {
 
         things: {
             //sprite spreadsheets only 1 row ok?
-            wall1: { file: "neonWall1.png", frames: 1, frameDelay: 1, position: [43, 100], label: "" },
-            wall2: { file: "neonWall2.png", frames: 1, frameDelay: 1, position: [84, 100], label: "" }
+            wall1: { file: "neonWall1.png", frames: 1, frameDelay: 1, position: [0, 0], label: null },
+            wall2: { file: "neonWall2.png", frames: 1, frameDelay: 1, position: [0, 0], label: null }
         }
     },
 
