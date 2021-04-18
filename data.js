@@ -71,7 +71,7 @@ module.exports.ROOMS = {
         music: "theStateOfMaine.ogg",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [38, 86, 128, 100],
+        spawn: [2, 87, 126, 100],
         areaColors: {
             //h will be replaced by #
             hf800ff: { cmd: "enter", room: "garden", label: "Garden", point: [46, 84], enterPoint: [104, 98], obstacle: false },
@@ -93,7 +93,7 @@ module.exports.ROOMS = {
         music: "garden.ogg",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [38, 80, 100, 100],
+        spawn: [24, 64, 125, 100],
         areaColors: {
             //h will be replaced by #
             h0000ff: { cmd: "enter", room: "theStateOfMaine", label: "State of Maine", point: [62, 73], enterPoint: [104, 98], obstacle: false },
@@ -112,7 +112,7 @@ module.exports.ROOMS = {
         music: "luna.ogg",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [38, 80, 100, 100],
+        spawn: [5, 5, 120, 90],
         areaColors: {
             //h will be replaced by #
             hff00ff: { cmd: "enter", room: "neon", label: "Neon", point: [64, 50], enterPoint: [104, 98], obstacle: false },
