@@ -27,6 +27,8 @@ module.exports.IMAGES = [
     ["uncleEmote", "uncle-emote.png"],
     ["milkmanWalk", "milkman.png"],
     ["milkmanEmote", "milkman-emote.png"],
+    ["ghostWalk", "ghost.png"],
+    ["ghostEmote", "ghost-emote.png"],
     ["boyfriendWalk", "child-boyfriend.png"],
     ["boyfriendEmote", "child-boyfriend-emote.png"],
     ["flyWalk", "fly.png"],

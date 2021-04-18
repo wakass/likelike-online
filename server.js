@@ -499,6 +499,11 @@ io.on("connection", function (socket) {
                     MOD["anyJoin"](playerObject, obj.to);
                 }
 
+                if (MOD[obj.to + "Join"] != null) {
+                    //call it!
+                    MOD[obj.to + "Join"](playerObject, obj.to);
+                }
+
                 //check if there are NPCs in this room and make them send info to the player
                 for (var NPCId in gameState.NPCs) {
                     var npc = gameState.NPCs[NPCId];

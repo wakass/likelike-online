@@ -249,14 +249,14 @@ function anyIntro(playerId, roomId) {
     //me.room
     if (playerId == currentTaggerId)
         {
-            roleId = "milkman";
+            roleId = "ghost";
             changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
         }
 }
 function anyEnter(playerId, sprite, drawingFunction) {
     if (playerId == currentTaggerId)
         {
-            roleId = "milkman";
+            roleId = "ghost";
             changeCharacter(currentTaggerId, roleId, roleId + "Walk", roleId + "Emote");
         }
 }
