@@ -130,7 +130,7 @@ module.exports.ROOMS = {
             //h will be replaced by #
             hff0000: { cmd: "enter", room: "neon", label: "Neon", point: [121, 77], enterPoint: [104, 98], obstacle: false },
             h00ff00: { cmd: "enter", room: "theStateOfMaine", label: "State of Plupluplu", point: [85, 35], enterPoint: [104, 98], obstacle: false },
-            h0000ff: { cmd: "enter", room: "barbarella", label: "Barbarella", point: [33, 54], enterPoint: [104, 98], obstacle: false },
+            h0000ff: { cmd: "enter", room: "barbarella", label: "Barbarella", point: [33, 54], enterPoint: [77, 90], obstacle: false },
         }
     },
 
