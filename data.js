@@ -149,18 +149,55 @@ module.exports.ROOMS = {
     },
 
     lobby: {
-        bg: "likelike-outside-omoma.png",
+        bg: "Thewhole.png",
         frames: 2,
         frameDelay: 30,
         avatarScale: 2,
         pageBg: "#ab5236",
-        area: "likelikeOutside-areas.png",
+        area: "FFFFFFhole.png",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [14, 84, 119, 92],
+        spawn: [38, 83, 100, 100],
         areaColors: {
             //h will be replaced by #
-            hff77a8: { cmd: "enter", room: "likelike", label: "Enter SICKSICK", point: [100, 84], enterPoint: [104, 98], obstacle: false },
+            hff00ff: { cmd: "enter", room: "theStateOfMaine", label: "Enter SICKSICK", point: [55, 40], enterPoint: [104, 98], obstacle: false },
+        }
+    },
+
+    theStateOfMaine: {
+        bg: "TOILET_AFBEELDING.png",
+        frames: 2,
+        frameDelay: 30,
+        avatarScale: 4,
+        pageBg: "#ab5236",
+        area: "TOILET_WANDEL.png",
+        tint: "#fdeac8",
+        bubblesY: 44,
+        spawn: [38, 80, 100, 100],
+        areaColors: {
+            //h will be replaced by #
+            hf800ff: { cmd: "enter", room: "garden", label: "Garden", point: [46, 84], enterPoint: [104, 98], obstacle: false },
+            h79077c: { cmd: "enter", room: "barbarella", label: "Barbarella", point: [74, 84], enterPoint: [104, 98], obstacle: false },
+            ha924ad: { cmd: "enter", room: "neon", label: "Neon", point: [96, 84], enterPoint: [104, 98], obstacle: false },
+            h8b348d: { cmd: "enter", room: "makeUpRoom", label: "Make up room", point: [111, 84], enterPoint: [104, 98], obstacle: false },
+        }
+    },
+
+    garden: {
+        bg: "TUIN_AFBEELDING.png",
+        frames: 2,
+        frameDelay: 30,
+        avatarScale: 2,
+        pageBg: "#ab5236",
+        area: "TUIN_WANDEL.png",
+        tint: "#fdeac8",
+        bubblesY: 44,
+        spawn: [38, 80, 100, 100],
+        areaColors: {
+            //h will be replaced by #
+            h7f087e: { cmd: "enter", room: "theStateOfMaine", label: "State of Maine", point: [62, 73], enterPoint: [104, 98], obstacle: false },
+            hff00ff: { cmd: "enter", room: "barbarella", label: "Barbarella", point: [13, 73], enterPoint: [104, 98], obstacle: false },
+            h9c009b: { cmd: "enter", room: "neon", label: "Neon", point: [117, 59], enterPoint: [104, 98], obstacle: false },
         }
     },
 
