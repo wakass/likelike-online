@@ -499,7 +499,7 @@ io.on("connection", function (socket) {
                     MOD["anyJoin"](playerObject, obj.to);
                 }
 
-                if (MOD[obj.to + "Join"] != null) {
+                 if (MOD[obj.to + "Join"] != null) {
                     //call it!
                     MOD[obj.to + "Join"](playerObject, obj.to);
                 }

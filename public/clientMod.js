@@ -196,6 +196,16 @@ function experimentsDrawSprite(playerId, sprite, drawingFunction) {
 
 }
 
+function lobbyEnter(playerId, roomId) {
+    if (playerId == me.id) {
+        longText = "Welcome to Sick$ick! Watch out for the milkman. He will try to catch you and convert you to the milk cult.";
+        longTextLines = -1;
+        longTextAlign = "center";
+        bg.rewind();
+        bg.stop();
+    }
+}
+
 function mirrorRoomDrawSprite(playerId, sprite, drawingFunction) {
 
     if (players[playerId] != null) {
@@ -386,6 +396,8 @@ function changeCharacter(playerId, roleId, walkSS, emoteSS) {
     p.sprite.addAnimation('emote', p.altEmoteAnimation);
     p.sprite.label = rolesInfo[roleId][0];
     p.sprite.depthOffset = AVATAR_H / 2;
+
+    // p.sprite.scale = window.ROOMS[p.room].avatarScale;
 
     if (roleId != "fly") {
         p.sprite.onMouseOver = function () {

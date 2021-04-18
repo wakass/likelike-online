@@ -442,7 +442,8 @@ module.exports.lobbyJoin = function (playerObject, roomId) {
         if (inGamePlayerCount > 0)
         {
             newTaggerI = getRandomInt(inGamePlayerCount);
-            global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
+            // global.gameState.players[inGamePlayers[newTaggerI].id].isTagger = true;
+            setNewTagger(newTaggerI);
             console.log("New Tagger = " + global.gameState.players[inGamePlayers[newTaggerI].id].nickName + " PlayerId:" + newTaggerI);
         }
         else
