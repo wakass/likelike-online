@@ -385,7 +385,6 @@ module.exports.rhymeRoomJoin = function (playerObject, roomId) {
 
 //if enters when music is playing sent 
 module.exports.rhymeRoomLeave = function (playerObject, roomId) {
-    console.log('hi');
     if (io.sockets.sockets[playerObject.id] != null) {
         io.sockets.sockets[playerObject.id].emit('musicExit');
 
@@ -401,8 +400,6 @@ module.exports.lobbyJoin = function (playerObject, roomId) {
 module.exports.lobbyLeave = function (playerObject, roomId) {
 
     global.gameState.players[playerObject.id].inGame = true;
-    console.log('roomid =');
-    console.log(roomId);
     players = global.gameState.players;
     entries = players.keys;
 
@@ -416,8 +413,6 @@ module.exports.lobbyLeave = function (playerObject, roomId) {
     if (!taggerPresent){
         global.gameState.players[playerObject.id].isTagger = true;
     }
-    console.log(global.gameState.players[playerObject.id].isTagger);
-    console.log(global.gameState.players[playerObject.id].nickName);
 }
 
 module.exports.darkRoomTalkFilter = function (player, message) {
