@@ -159,10 +159,15 @@ canvas {
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
+	width: 300px;
 	display: block;
 	text-align: right;
 	margin-bottom: 8px;
 	margin-right: 8px;
+}
+
+.info p {
+	font-size: 20px;
 }
 
 .info a {
