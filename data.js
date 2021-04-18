@@ -68,7 +68,7 @@ module.exports.ROOMS = {
         area: "theStateOfMaineArea.png",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [38, 80, 100, 100],
+        spawn: [2, 87, 126, 100],
         areaColors: {
             //h will be replaced by #
             hf800ff: { cmd: "enter", room: "garden", label: "Garden", point: [46, 84], enterPoint: [104, 98], obstacle: false },
@@ -88,7 +88,7 @@ module.exports.ROOMS = {
         area: "gardenArea.png",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [38, 80, 100, 100],
+        spawn: [24, 64, 125, 100],
         areaColors: {
             //h will be replaced by #
             h7f087e: { cmd: "enter", room: "theStateOfMaine", label: "State of Maine", point: [62, 73], enterPoint: [104, 98], obstacle: false },
@@ -106,7 +106,7 @@ module.exports.ROOMS = {
         area: "luneArea.png",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [38, 80, 100, 100],
+        spawn: [5, 5, 120, 90],
         areaColors: {
             //h will be replaced by #
             hff008b: { cmd: "enter", room: "neon", label: "Neon", point: [64, 50], enterPoint: [104, 98], obstacle: false },
