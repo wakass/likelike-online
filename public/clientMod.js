@@ -349,7 +349,7 @@ function changeCharacterToOriginal(playerId) {
     
     removeSprite(p.sprite);
 
-    players[playerId] = fakeNew;
+    window.me = players[playerId] = fakeNew;
     delete(p);
     
     // p.spriteSheet = loadSpriteSheet(p.avatarGraphics, AVATAR_W, AVATAR_H, round(window.walkSheets[p.avatar].width / AVATAR_W));
